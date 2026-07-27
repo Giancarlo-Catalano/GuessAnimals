@@ -73,8 +73,6 @@ For your convenience, I will save a copy here.
 ## Dependencies
 You will need the following libraries:
 * (to run the setup)
-  * huggingface-hub
-  * google-genai
-  * requests
+  * sentence_transformers
 * To run the metaheuristic
   * numpy
