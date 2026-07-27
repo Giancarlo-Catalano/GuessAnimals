@@ -1,7 +1,20 @@
+import json
+
+import numpy as np
+
 import utils
 import setup
 
-RUN_SETUP = True
+RUN_SETUP = False
+
+
+def load_word_data():
+    with open(setup.LIST_OF_ANIMALS_FILE, "r") as file:
+        animals = json.load(file)
+
+    similarities = np.load(setup.ANIMAL_SIMILARITIES_FILE)
+
+    return animals, similarities
 
 
 def main():
@@ -9,7 +22,9 @@ def main():
         with utils.announce("Running the setup, this might take a while"):
             setup.setup()
 
-    # list_of_animals, animal_similarity_matrix = load_word_data()
+    list_of_animals, animal_similarity_matrix = load_word_data()
+    print(list_of_animals)
+    print(animal_similarity_matrix)
 
     # mutation, crossover, selection = task.make_operators(similarity_matrix)
     # N = 5

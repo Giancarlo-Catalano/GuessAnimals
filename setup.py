@@ -32,7 +32,7 @@ def download_list_of_animals():
 
     return animals
 
-def get_similarity_matrix_between_animals(animals: list[str]):
+def save_similarity_matrix(animals: list[str]):
     # Prepare EmbeddingGemma
     DEVICE = "mps"
     MODEL_ID = "google/embeddinggemma-300M"
@@ -52,16 +52,10 @@ def get_similarity_matrix_between_animals(animals: list[str]):
 
 
 def setup():
-    utils.log("Debug setup")
-
-    if False:
-        animals = download_list_of_animals()
-
-    # temp code
-    animals = json.load(open("prepared_data/list_of_animals.json", "r"))
+    animals = download_list_of_animals()
 
     # make the similarity matrix
-    get_similarity_matrix_between_animals(animals)
+    save_similarity_matrix(animals)
 
 
 
