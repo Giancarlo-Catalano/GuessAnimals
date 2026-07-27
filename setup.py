@@ -25,6 +25,9 @@ def get_list_of_animals():
 
     return animals
 
+def get_similarity_matrix_between_animals():
+    pass
+
 def setup():
     utils.log("Debug setup")
 
