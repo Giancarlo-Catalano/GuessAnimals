@@ -1,6 +1,7 @@
 import time
 from contextlib import ContextDecorator
 import sys
+from urllib.request import urlopen
 
 def log(msg):
     print(msg, file=sys.stderr)
@@ -51,3 +52,9 @@ class Announce(ContextDecorator):
 
 def announce(action: str, verbose=True):
     return Announce(action, verbose)
+
+def download_raw_text_from_website(url: str) -> str:
+    # Without any error prevention...
+    with urlopen(url) as resp:
+        result_text = resp.read().decode("utf-8", errors="replace")
+    return result_text
