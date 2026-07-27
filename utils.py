@@ -1,5 +1,9 @@
 import time
 from contextlib import ContextDecorator
+import sys
+
+def log(msg):
+    print(msg, file=sys.stderr)
 
 
 class ExecutionTime(ContextDecorator):
