@@ -70,3 +70,11 @@ For your convenience, I will save a copy here.
 > [!IMPORTANT]
 > I have not gotten here yet! I'm writing the readme first, on 27/07/2026
 
+## Dependencies
+You will need the following libraries:
+* (to run the setup)
+  * huggingface-hub
+  * google-genai
+  * requests
+* To run the metaheuristic
+  * numpy
