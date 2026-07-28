@@ -18,13 +18,13 @@ all_words = {"dog", "cat", "ant", "bee"} # I will use a set of animals
 def to_vector(word: str) -> Embedding:
     pass # use EmbeddingGemma, produces a Tensor
 
-def distance(vec_1: Embedding, vec_2: Embedding) -> float:
+def similarity(vec_1: Embedding, vec_2: Embedding) -> float:
     pass # cosine similarity! But it can be changed easily
 
 # this is the important part!
 def quality_metric(chosen_words: set[str]) -> float:
     def closest_similarity_for_word(word:str) -> float:
-        return max(distance(to_vector(word), chosen_word)
+        return max(similarity(to_vector(word), chosen_word)
                    for chosen_word in chosen_words)
     
     not_chosen_words = all_words.difference(chosen_words)
