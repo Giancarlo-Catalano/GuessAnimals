@@ -40,6 +40,14 @@ Note that the objective is multiplied by -1 so that it becomes a _minimisation_ 
 
 If we have a quality metric, then we can do **optimisation** via a Genetic Algorithm. 
 
+
+> [!NOTE]
+> Interesting detail: just getting the cosine similarity between the animals did not work well, because the words can have more than one meaning.
+> For example, I kept seeing that `fowl` is similar to `catfish`, which makes sense but not for animals. 
+> Instead, I find the similarity between `The animal fowl` and `The animal catfish`. I'm sure this could be much more sophisticated but I'm happy with the results. 
+
+
+
 ## Metaheuristic process
 > [!NOTE]
 > Feel free to skip this section if you don't care about Metaheuristics / Search methods / Genetic Algorithms / Nature Based Methods / Non-Deterministic Solvers / Evolutionary Computing.
@@ -55,7 +63,7 @@ Then:
 
 I will use a traditional mu = lambda algorithm, with mechanisms to avoid duplicates. Note that I did not use a library for this, because PyMoo is not the that great, and the other libraries are quite poor IMHO.
 
-## Speed!
+## Speed! And setup
 Yes, I can run EmbeddingGemma locally, but it's slow.
 It's easier to run it once, and obtain all the similarities.
 Once I do that, I don't even need to use the embeddings, or cosine similarity!!!
@@ -70,10 +78,7 @@ Due to this, there is a setup script (setup.py) which will:
 
 For your convenience, I will save a copy of my fetched data in the repo, so you don't need to run any of this!.
 
-> [!NOTE]
-> Interesting detail: just getting the cosine similarity between the animals did not work well, because the words can have more than one meaning.
-> For example, I kept seeing that `fowl` is similar to `catfish`, which makes sense but not for animals. 
-> Instead, I find the similarity between `The animal fowl` and `The animal catfish`. I'm sure this could be much more sophisticated but I'm happy with the results. 
+If you want to run the setup, set the variable `RUN_SETUP` to `True` in main, and add a file called secrets.json, with the attribute `GOOGLE_GEMINI_API_KEY` being populated with your API key. 
 
 ## Why not other methods?
 There are other options we could have considered:
