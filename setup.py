@@ -5,7 +5,7 @@ import sys
 import numpy as np
 
 import utils
-from sentence_transformers import SentenceTransformer
+
 
 CACHED_DATA_FOLDER = "prepared_data"
 LIST_OF_ANIMALS_FILE = os.path.join(CACHED_DATA_FOLDER, "list_of_animals.json")
@@ -33,6 +33,9 @@ def download_list_of_animals():
     return animals
 
 def save_similarity_matrix(animals: list[str]):
+    from sentence_transformers import SentenceTransformer
+    # I import here because this is a slow import, I don't want to always do it!
+
     # Prepare EmbeddingGemma
     DEVICE = "mps"
     MODEL_ID = "google/embeddinggemma-300M"

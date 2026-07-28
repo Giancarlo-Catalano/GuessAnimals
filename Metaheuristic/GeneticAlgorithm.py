@@ -11,7 +11,7 @@ def run_GA(
         objective: Callable[[Ind], float],
         sampling_operator: Callable[[], Ind],
         mutation_operator: Callable[[Ind], Ind],
-        crossover: Callable[[Ind, Ind], (Ind, Ind)],
+        crossover: Callable[[Ind, Ind], tuple[Ind, Ind]],
         make_tournament_selection: Callable[[operators.Population, int], Callable],
         tournament_size: int,
         truncation_selection: Callable[[operators.Population, int], operators.Population],

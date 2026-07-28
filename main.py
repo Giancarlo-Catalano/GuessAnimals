@@ -42,12 +42,13 @@ def main():
         tournament_size = 3,
         truncation_selection = truncation_selection,
         population_size = 100,
-        budget = 10000
+        budget = 10000,
+        verbose=True
     )
-    #
-    # print(f"The ideal set of animals has fitness: {winning_fitness:.3f}")
-    # for animal in winning_individual:
-    #     print(f"\t{animal}")
+
+    print(f"The ideal set of animals has fitness: {winning_fitness:.3f}")
+    for animal in winning_individual:
+        print(f"\t{animal}")
 
 
 
