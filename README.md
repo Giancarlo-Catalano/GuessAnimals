@@ -6,7 +6,9 @@ I always wondered what is the ideal set of guesses in order to get a quick idea,
 
 > Given N guesses, which words will guarantee that the secret word is close to one of them? 
 
-I am interested in word embeddings, and I just discovered that I can run an embedder (for sentences) locally on my modest MacBook M1 Air. 
+I am interested in word embeddings, and I just discovered that I can run an embedder (for sentences) locally on my modest MacBook M1 Air.
+
+Click [here][#results] to jump to the results.
 
 # Methodology
 It's hard to define when words are "close enough". 
@@ -87,7 +89,8 @@ There are other options we could have considered:
 * Given the set for N-1, greedily find the new word that improves the objective the most. 
   * --> That might work, but we assume that the problem is easy. I think this GA option allows us to directly state our intention, and the algorithm just searches without any assumptions
   * --> Note how my results change completely for every N!
-# RESULTS
+
+# Results
 
 | N   | Animals |
 |-----|----------|
