@@ -4,6 +4,9 @@ import numpy as np
 
 import utils
 import setup
+from Metaheuristic.GeneticAlgorithm import run_GA
+from Metaheuristic.objective import make_maxmin_distance_objective
+from Metaheuristic.operators import make_operators
 
 RUN_SETUP = False
 
@@ -26,15 +29,21 @@ def main():
     print(list_of_animals)
     print(animal_similarity_matrix)
 
-    # individual_size = 5
-    # sampling, mutation, crossover, selection = task.make_operators(similarity_matrix, individual_size)
-    # winning_individual, winning_fitness = run_metaheuristic(
-    #     objective = task.make_maxmin_distance_objective(similarity_matrix),
-    #     mutation_operator = mutation,
-    #     crossover = crossover,
-    #     population_size = 100,
-    #     budget = 10000
-    # )
+    individual_size = 5
+    operators = make_operators(animal_similarity_matrix, individual_size)
+    sampling, mutation, crossover, make_tournament_selection, truncation_selection = operators
+
+    winning_individual, winning_fitness = run_GA(
+        sampling_operator = sampling,
+        objective = make_maxmin_distance_objective(animal_similarity_matrix),
+        mutation_operator = mutation,
+        crossover = crossover,
+        make_tournament_selection = make_tournament_selection,
+        tournament_size = 3,
+        truncation_selection = truncation_selection,
+        population_size = 100,
+        budget = 10000
+    )
     #
     # print(f"The ideal set of animals has fitness: {winning_fitness:.3f}")
     # for animal in winning_individual:
