@@ -62,7 +62,7 @@ def main():
             file = os.path.join("results", f"N_is{N}.json")
             with open(file, "w+") as file:
                 json.dump({"N": N,
-                          "winning_individual": 1,
+                          "winning_individual": [list_of_animals[index] for index in winning_individual],
                            "winning_fitness": winning_fitness}, file)
 
 
