@@ -92,18 +92,18 @@ There are other options we could have considered:
 
 # Results
 
-| N   | Animals                                                                                         |
-|-----|-------------------------------------------------------------------------------------------------|
-| 1   | portuguese man o' war                                                                           |
-| 2   | sea snail, woodpecker                                                                           |
-| 3   | panda, sturgeon, water buffalo,                                                                 |
-| 4   | bee, cockroach, giant panda, sugar glider                                                       |
-| 5   | beetle, buffalo, gull, panda, quokka                                                            |
-| 6   | ant, bug, dormouse, giant panda, guppy, wolverine                                               |
-| 7   | bat, giant panda, hyena, mite, spider, swordfish, tasmanian devil                               |
-| 8   | basilisk, bobcat, cockroach, gamefowl, jaguar, panda, panthera hybrid, termite                  |
-| 9   | carp, fowl, gazelle, ground shark, land snail, panda, siamese fighting fish, tarantula, tarsier |
-| 10  | cephalopod, damselfly, hookworm, kangaroo, lynx, panda, partridge, salamander, scallop, skink   |
+| N   | Animals                                                                                                                          |
+|-----|----------------------------------------------------------------------------------------------------------------------------------|
+|1| asiatic black bear                                                                                                               |
+|2| hermit crab,beaver                                                                                                               |
+|3| himalayan,striped rocket frog,chameleon                                                                                          |
+|4| swan,elephant shrew,beaver,dog                                                                                                   |
+|5| catfish,french bulldog,chimpanzee,vulture,elephant shrew                                                                         |
+|6| mountain gorilla,french bulldog,walrus,elephant shrew,gecko,english springer spaniel                                             |
+|7| javan rhinoceros,mountain lion,english cocker spaniel,gecko,african forest elephant,walrus,angelfish                             |
+|8| catfish,mountain lion,beaver,african forest elephant,french bulldog,vulture,alpine dachsbracke,monkey                            |
+|9| mountain lion,african forest elephant,french bulldog,asiatic black bear,vulture,chimpanzee,walrus,grouse,guppy                   |
+|10| borneo elephant,french bulldog,manta ray,chinese crested dog,elephant shrew,marsh frog,dogue de bordeaux,sparrow,monkey,giraffe  |
 
 ## Dependencies
 You will need the following libraries:
@@ -117,3 +117,4 @@ You will need the following libraries:
 * GA code is not as fast as it could be, on my machine it takes ~ 5 seconds per search.
 * I could use other lists of items (i.e. Jobs), but I care more about the procedure than the results...
 * The results are definitely skewed towards mammals. I suspect this is because most of my dataset is mammals...
+* My dataset contains a lot of dogs, so there's a strong bias

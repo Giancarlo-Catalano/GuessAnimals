@@ -9,7 +9,7 @@ from Metaheuristic.GeneticAlgorithm import run_genetic_algorithm
 from Metaheuristic.objective import make_maxmin_distance_objective, make_clique_objective
 from Metaheuristic.operators import make_operators
 
-RUN_SETUP = True
+RUN_SETUP = False
 RUN_GA_FOR_EVERY_N = True
 
 
@@ -47,9 +47,7 @@ def main():
         )
 
         print(f"The ideal set of animals for N = {N} has fitness: {winning_fitness:.6f}\n")
-        for index in sorted(winning_individual):
-            print(f"{list_of_animals[index]}, ", end="")
-        print()
+        print(f"| {N} | {','.join([list_of_animals[index] for index in winning_individual])} |")
 
         return winning_individual, winning_fitness
 
