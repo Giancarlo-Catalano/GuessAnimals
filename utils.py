@@ -3,6 +3,9 @@ from contextlib import ContextDecorator
 import sys
 from urllib.request import urlopen
 
+import numpy as np
+
+
 def log(msg):
     print(msg, file=sys.stderr)
 
@@ -61,3 +64,8 @@ def download_raw_text_from_website(url: str) -> str:
 
 def second(x):
     return x[1]
+
+
+def remap_0_1(array: np.ndarray):
+    m = np.min(array)
+    return (array - m) / (np.max(array) - m)

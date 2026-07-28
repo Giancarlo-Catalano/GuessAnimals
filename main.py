@@ -34,15 +34,15 @@ def main():
     sampling, mutation, crossover, make_tournament_selection, truncation_selection = operators
 
     winning_individual, winning_fitness = run_GA(
-        sampling_operator = sampling,
-        objective = make_clique_objective(animal_similarity_matrix),
-        mutation_operator = mutation,
-        crossover = crossover,
-        make_tournament_selection = make_tournament_selection,
-        tournament_size = 3,
-        truncation_selection = truncation_selection,
-        population_size = 200,
-        budget = 100000,
+        sampling_operator=sampling,
+        objective=make_clique_objective(animal_similarity_matrix),
+        mutation_operator=mutation,
+        crossover=crossover,
+        make_tournament_selection=make_tournament_selection,
+        tournament_size=3,
+        truncation_selection=truncation_selection,
+        population_size=200,
+        budget=100000,
         verbose=True
     )
 
@@ -51,8 +51,4 @@ def main():
         print(f"\t{list_of_animals[index]}")
 
 
-
 main()
-
-
-
