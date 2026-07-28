@@ -9,7 +9,7 @@ from Metaheuristic.GeneticAlgorithm import run_genetic_algorithm
 from Metaheuristic.objective import make_maxmin_distance_objective, make_clique_objective
 from Metaheuristic.operators import make_operators
 
-RUN_SETUP = False
+RUN_SETUP = True
 RUN_GA_FOR_EVERY_N = True
 
 
@@ -43,12 +43,13 @@ def main():
             truncation_selection=truncation_selection,
             population_size=1000,
             budget=100000,
-            verbose=True
+            verbose=False
         )
 
-        print(f"The ideal set of animals has fitness: {winning_fitness:.6f}")
+        print(f"The ideal set of animals for N = {N} has fitness: {winning_fitness:.6f}\n")
         for index in sorted(winning_individual):
-            print(f"\t{list_of_animals[index]}")
+            print(f"{list_of_animals[index]}, ", end="")
+        print()
 
         return winning_individual, winning_fitness
 
