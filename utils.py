@@ -58,3 +58,6 @@ def download_raw_text_from_website(url: str) -> str:
     with urlopen(url) as resp:
         result_text = resp.read().decode("utf-8", errors="replace")
     return result_text
+
+def second(x):
+    return x[1]

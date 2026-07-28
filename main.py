@@ -26,8 +26,8 @@ def main():
     print(list_of_animals)
     print(animal_similarity_matrix)
 
-    # sampling, mutation, crossover, selection = task.make_operators(similarity_matrix)
-    # N = 5
+    # individual_size = 5
+    # sampling, mutation, crossover, selection = task.make_operators(similarity_matrix, individual_size)
     # winning_individual, winning_fitness = run_metaheuristic(
     #     objective = task.make_maxmin_distance_objective(similarity_matrix),
     #     mutation_operator = mutation,
