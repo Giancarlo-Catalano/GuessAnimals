@@ -8,7 +8,7 @@ I always wondered what is the ideal set of guesses in order to get a quick idea,
 
 I am interested in word embeddings, and I just discovered that I can run an embedder (for sentences) locally on my modest MacBook M1 Air.
 
-Click [here][#results] to jump to the results.
+Click [here](#results) to jump to the results.
 
 # Methodology
 It's hard to define when words are "close enough". 
