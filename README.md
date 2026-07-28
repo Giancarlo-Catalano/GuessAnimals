@@ -92,18 +92,18 @@ There are other options we could have considered:
 
 # Results
 
-| N   | Animals |
-|-----|----------|
-| 1   | portuguese man o' war |
-| 2   | raven, snail |
-| 3   | felidae, firefly, giant panda |
-| 4   | giant panda, mongoose, reindeer, weasel |
-| 5   | blue bird, panda, rhinoceros, spider monkey, wildfowl |
-| 6   | boar, hookworm, panda, praying mantis, python, siamese fighting fish |
-| 7   | dragonfly, jaguar, lizard, panda, penguin, piranha, toucan |
-| 8   | beaver, dragonfly, louse, harrier, panda, partridge, saber-toothed cat, wildfowl |
-| 9   | bass, ermine, fish, gila monster, iguana, panda, parrot, skunk, trapdoor spider |
-| 10  | african leopard, canid, crane fly, goldfish, nightingale, parrot, panda, sea lion, swift, swordfish |
+| N   | Animals                                                                                         |
+|-----|-------------------------------------------------------------------------------------------------|
+| 1   | portuguese man o' war                                                                           |
+| 2   | sea snail, woodpecker                                                                           |
+| 3   | panda, sturgeon, water buffalo,                                                                 |
+| 4   | bee, cockroach, giant panda, sugar glider                                                       |
+| 5   | beetle, buffalo, gull, panda, quokka                                                            |
+| 6   | ant, bug, dormouse, giant panda, guppy, wolverine                                               |
+| 7   | bat, giant panda, hyena, mite, spider, swordfish, tasmanian devil                               |
+| 8   | basilisk, bobcat, cockroach, gamefowl, jaguar, panda, panthera hybrid, termite                  |
+| 9   | carp, fowl, gazelle, ground shark, land snail, panda, siamese fighting fish, tarantula, tarsier |
+| 10  | cephalopod, damselfly, hookworm, kangaroo, lynx, panda, partridge, salamander, scallop, skink   |
 
 ## Dependencies
 You will need the following libraries:

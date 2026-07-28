@@ -10,7 +10,7 @@ from Metaheuristic.objective import make_maxmin_distance_objective, make_clique_
 from Metaheuristic.operators import make_operators
 
 RUN_SETUP = False
-RUN_GA_FOR_EVERY_N = False
+RUN_GA_FOR_EVERY_N = True
 
 
 def load_word_data():
@@ -55,7 +55,7 @@ def main():
     #get_optimal(individual_size=3)
 
     if RUN_GA_FOR_EVERY_N:
-        for N in range(10, 11):
+        for N in range(1, 11):
             winning_individual, winning_fitness = get_optimal(N)
             file = os.path.join("results", f"N_is{N}.json")
             with open(file, "w+") as file:
