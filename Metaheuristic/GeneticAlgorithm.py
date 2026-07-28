@@ -29,12 +29,14 @@ def run_GA(
     population = dict() # so that we avoid duplicates, and we cache the fitness values
 
 
+    consecutive_failed_generations = 0
     sampling_fails_count = 0
     while len(population) < population_size:
         if sampling_fails_count > population_size:
-            raise Exception("It appears to be impossible to generate an initial population, "
+            log("It appears to be impossible to generate an initial population, "
                             "perhaps the search space is too small, "
                             "or the sampling operator is not implemented correctly.")
+            break # Yes, the program continues with a small population
         new_ind = sampling_operator()
         if new_ind in population:
             sampling_fails_count+=1
@@ -54,12 +56,19 @@ def run_GA(
         return mutation_operator(parent_1), mutation_operator(parent_2)
 
     while (fitness_evaluations < budget):
+        if consecutive_failed_generations > 10:
+            log("Ending generational loop early, too many failed generations.")
+            break
+
         log(f"Creating new generation, {fitness_evaluations = }")
         # create the offspring
         offspring = dict()
         tournament_selector = make_tournament_selection(population, tournament_size)
         rejected_children_count = 0
         while len(offspring) < population_size:
+            if rejected_children_count > 2*population_size: # arbitrary
+                log("Could not produce enough children, continuing")
+                break
             children = create_new_children(tournament_selector)
             for child in children:
                 # we reject duplicate entries
@@ -67,8 +76,13 @@ def run_GA(
                     rejected_children_count += 1
                 else:
                     offspring[child] = objective(child)
-        if rejected_children_count > 0:
+
+        if rejected_children_count > 2*population_size:
             log(f"Rejected children count = {rejected_children_count}")
+            consecutive_failed_generations += 1
+        else:
+            consecutive_failed_generations = 0
+
 
         fitness_evaluations += len(offspring)
 
