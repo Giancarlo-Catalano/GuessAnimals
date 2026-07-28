@@ -23,16 +23,16 @@ def distance(vec_1: Embedding, vec_2: Embedding) -> float:
 
 # this is the important part!
 def quality_metric(chosen_words: set[str]) -> float:
-    def closest_distance_for_word(word:str) -> float:
-        return min(distance(to_vector(word), chosen_word)
+    def closest_similarity_for_word(word:str) -> float:
+        return max(distance(to_vector(word), chosen_word)
                    for chosen_word in chosen_words)
     
     not_chosen_words = all_words.difference(chosen_words)
-    return max(closest_distance_for_word(word)
+    return min(closest_similarity_for_word(word)
                for word in not_chosen_words)
 ```
 In better terms:
-1. For a given word, I see which word [from my set] it is closest to. I record the distance, and smaller is better.
+1. For a given word, I see which word [from my set] it is closest to. I record the distance, and bigger is better (cosine similarity!)
 2. In all the words that I didn't pick already, which word has the **worst** closest distance?
 
 

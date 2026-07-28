@@ -42,7 +42,8 @@ def save_similarity_matrix(animals: list[str]):
     model: SentenceTransformer = SentenceTransformer(MODEL_ID, device=DEVICE)
 
     # Run inference with queries and documents
-    embeddings = model.encode(animals)
+    better_query_for_animals = [f"The animal {animal}" for animal in animals]
+    embeddings = model.encode(better_query_for_animals)
     similarities: np.ndarray = model.similarity(embeddings, embeddings).numpy()
 
     utils.log(f"The similarities is of type {type(similarities)}")

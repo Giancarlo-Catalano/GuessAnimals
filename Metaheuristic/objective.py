@@ -11,8 +11,8 @@ def make_maxmin_distance_objective(similarity_matrix: np.ndarray):
         array_of_present = np.fromiter(individual, dtype=int)
         array_of_missing = np.fromiter(all_items_set.difference(individual), dtype=int)
 
-        smallest_distance_for_every_present = np.min(similarity_matrix[array_of_present, :][:, array_of_missing])
-        return float(np.max(smallest_distance_for_every_present))
+        best_distance_for_every_present = np.max(similarity_matrix[array_of_present, :][:, array_of_missing])
+        return -float(np.min(best_distance_for_every_present)) # we invert it because my GA minimises
 
     return objective
 
