@@ -47,8 +47,8 @@ def main():
     )
 
     print(f"The ideal set of animals has fitness: {winning_fitness:.3f}")
-    for animal in winning_individual:
-        print(f"\t{animal}")
+    for index in winning_individual:
+        print(f"\t{list_of_animals[index]}")
 
 
 
