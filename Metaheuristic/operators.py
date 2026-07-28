@@ -60,7 +60,7 @@ def make_operators(similarity_matrix: np.ndarray, individual_size: int) -> (Call
 
         def tournament_select():
             items = random.sample(list_of_pairs, k=tournament_size)
-            winner_key, winner_value = max(items, key=utils.second)
+            winner_key, winner_value = min(items, key=utils.second) # MINIMISATION TASK
             return winner_key
         return tournament_select
 

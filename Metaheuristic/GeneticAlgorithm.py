@@ -58,14 +58,17 @@ def run_GA(
         # create the offspring
         offspring = dict()
         tournament_selector = make_tournament_selection(population, tournament_size)
+        rejected_children_count = 0
         while len(offspring) < population_size:
             children = create_new_children(tournament_selector)
             for child in children:
                 # we reject duplicate entries
                 if (child in population) or (child in offspring):
-                    log("Child was rejected because it exists already")
+                    rejected_children_count += 1
                 else:
                     offspring[child] = objective(child)
+        if rejected_children_count > 0:
+            log(f"Rejected children count = {rejected_children_count}")
 
         fitness_evaluations += len(offspring)
 
