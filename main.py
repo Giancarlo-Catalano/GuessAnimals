@@ -57,7 +57,7 @@ def main():
 
 
     if RUN_GA_FOR_EVERY_N:
-        for N in range(1, 10):
+        for N in range(10, 11):
             winning_individual, winning_fitness = get_optimal(N)
             file = os.path.join("results", f"N_is{N}.json")
             with open(file, "w+") as file:

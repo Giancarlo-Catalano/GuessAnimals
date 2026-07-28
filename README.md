@@ -4,13 +4,13 @@ I love word games, and I sometimes play things like [Hot and Cold](https://hotan
 
 I always wondered what is the ideal set of guesses in order to get a quick idea, i.e:
 
-> Given N guesses, which words will guarantee that the secret word is close to one of them? What set of words is a "uniformly distributed" within the space of words?
+> Given N guesses, which words will guarantee that the secret word is close to one of them? 
 
-We have word embeddings now, and I just discovered that I can run an embedder (for sentences) locally on my modest MacBook M1 Air. 
+I am interested in word embeddings, and I just discovered that I can run an embedder (for sentences) locally on my modest MacBook M1 Air. 
 
 # Methodology
-It's hard to define when words are "close enough", especially using embedded vectors. 
-I don't need "close enough", I just need a quality metric. I decided to use this:
+It's hard to define when words are "close enough". 
+I don't need "close enough", I just need "as close as I can get". I decided to use this (the last function) as a **fitness metric**:
 
 ```python
 all_words = {"dog", "cat", "ant", "bee"} # I will use a set of animals
@@ -32,11 +32,13 @@ def quality_metric(chosen_words: set[str]) -> float:
                for word in not_chosen_words)
 ```
 In better terms:
-1. For a given word, I see which word [from my set] it is closest to. I record the distance, and bigger is better (cosine similarity!)
-2. In all the words that I didn't pick already, which word has the **worst** closest distance?
+1. For a given word, I see which word [from my set] it is closest to. I record the similarity, and bigger is better (cosine similarity!)
+2. In all the words that I didn't pick already, what is the **worst** closest distance?
 
+If you are interested in how this is implemented, you can look at `objective.py`, where I define `make_maxmin_distance_objective`. 
+Note that the objective is multiplied by -1 so that it becomes a _minimisation_ task (which is less confusing to me). 
 
-If we have a quality metric, then we can do **optimisation**. 
+If we have a quality metric, then we can do **optimisation** via a Genetic Algorithm. 
 
 ## Metaheuristic process
 > [!NOTE]
@@ -44,31 +46,56 @@ If we have a quality metric, then we can do **optimisation**.
 
 We aim to find the set of words which achieves the maximum of the fitness metric defined above. 
 Then:
-* What is an individual? It will be a set of words, fixed to a certain size. This size is set as a static parameter.
+* What is an individual? It will be a set of words, fixed to a certain size. This size is set as a static parameter, which I call N.
+  * For speed, I store the _index_ of each word, rather than the word itself.
 * What are the operators? I *could* use normal operators for a set of items, but I want to try again with what I implemented in [this paper](https://dl.acm.org/doi/10.1007/978-3-032-11442-6_3). 
-  * Mutation: We swap items for similar items. Items are similar based on cosine similarity
+  * Mutation: We swap items for similar items. Items are similar based on cosine similarity, and this similarity informs a Markov transition matrix. 
   * Crossover: Offspring are guaranteed the intersection of their parents
-  * Selection: Tournament selection, size = 3 (as is standard...)
+  * Selection: Tournament selection
 
-I will use a traditional mu = lambda algorithm, nothing special there.
+I will use a traditional mu = lambda algorithm, with mechanisms to avoid duplicates. Note that I did not use a library for this, because PyMoo is not the that great, and the other libraries are quite poor IMHO.
 
-## Optimisation
+## Speed!
 Yes, I can run EmbeddingGemma locally, but it's slow.
 It's easier to run it once, and obtain all the similarities.
 Once I do that, I don't even need to use the embeddings, or cosine similarity!!!
 
+
 Due to this, there is a setup script (setup.py) which will:
-* download a list of animals from a URL
-* Associate each animal with an index
-* setup EmbeddingGemma, and get similarities between all the animals
-* create a matrix representing the similarity between every animal **index**
-* save that matrix using numpy.
+1. download a list of animals from a URL
+2. Associate each animal with an index
+3. setup EmbeddingGemma, and get similarities between all the animals
+4. create a matrix representing the similarity between every animal **index**
+5. save that matrix using numpy.
 
-For your convenience, I will save a copy here. 
+For your convenience, I will save a copy of my fetched data in the repo, so you don't need to run any of this!.
 
+> [!NOTE]
+> Interesting detail: just getting the cosine similarity between the animals did not work well, because the words can have more than one meaning.
+> For example, I kept seeing that `fowl` is similar to `catfish`, which makes sense but not for animals. 
+> Instead, I find the similarity between `The animal fowl` and `The animal catfish`. I'm sure this could be much more sophisticated but I'm happy with the results. 
+
+## Why not other methods?
+There are other options we could have considered:
+* cluster all the words, using the inverse of the similarity as a distance metric. The centroids are our desired set.
+  * --> That could work, but it does not guarantee that the worst distance is low... The clusters could be huge!
+* Given the set for N-1, greedily find the new word that improves the objective the most. 
+  * --> That might work, but we assume that the problem is easy. I think this GA option allows us to directly state our intention, and the algorithm just searches without any assumptions
+  * --> Note how my results change completely for every N!
 # RESULTS
-> [!IMPORTANT]
-> I have not gotten here yet! I'm writing the readme first, on 27/07/2026
+
+| N   | Animals |
+|-----|----------|
+| 1   | portuguese man o' war |
+| 2   | raven, snail |
+| 3   | felidae, firefly, giant panda |
+| 4   | giant panda, mongoose, reindeer, weasel |
+| 5   | blue bird, panda, rhinoceros, spider monkey, wildfowl |
+| 6   | boar, hookworm, panda, praying mantis, python, siamese fighting fish |
+| 7   | dragonfly, jaguar, lizard, panda, penguin, piranha, toucan |
+| 8   | beaver, dragonfly, louse, harrier, panda, partridge, saber-toothed cat, wildfowl |
+| 9   | bass, ermine, fish, gila monster, iguana, panda, parrot, skunk, trapdoor spider |
+| 10  | african leopard, canid, crane fly, goldfish, nightingale, parrot, panda, sea lion, swift, swordfish |
 
 ## Dependencies
 You will need the following libraries:
@@ -76,3 +103,8 @@ You will need the following libraries:
   * sentence_transformers
 * To run the metaheuristic
   * numpy
+
+## Known issues
+* The list of animals that I use is not great, because it contains many animals that are either identical (e.g. snail vs land snail), or that are categories (canid, felidae), or some animals are obscure
+* GA code is not as fast as it could be, on my machine it takes ~ 5 seconds per search.
+* I could use other lists of items (i.e. Jobs), but I care more about the procedure than the results...
