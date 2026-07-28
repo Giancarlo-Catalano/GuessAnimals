@@ -9,7 +9,7 @@ from Metaheuristic.GeneticAlgorithm import run_genetic_algorithm
 from Metaheuristic.objective import make_maxmin_distance_objective, make_clique_objective
 from Metaheuristic.operators import make_operators
 
-RUN_SETUP = False
+RUN_SETUP = True
 RUN_GA_FOR_EVERY_N = True
 
 

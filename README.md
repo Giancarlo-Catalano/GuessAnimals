@@ -92,19 +92,18 @@ There are other options we could have considered:
 
 # Results
 
-| N   | Animals                                                                                                                          |
-|-----|----------------------------------------------------------------------------------------------------------------------------------|
-|1| asiatic black bear                                                                                                               |
-|2| hermit crab,beaver                                                                                                               |
-|3| himalayan,striped rocket frog,chameleon                                                                                          |
-|4| swan,elephant shrew,beaver,dog                                                                                                   |
-|5| catfish,french bulldog,chimpanzee,vulture,elephant shrew                                                                         |
-|6| mountain gorilla,french bulldog,walrus,elephant shrew,gecko,english springer spaniel                                             |
-|7| javan rhinoceros,mountain lion,english cocker spaniel,gecko,african forest elephant,walrus,angelfish                             |
-|8| catfish,mountain lion,beaver,african forest elephant,french bulldog,vulture,alpine dachsbracke,monkey                            |
-|9| mountain lion,african forest elephant,french bulldog,asiatic black bear,vulture,chimpanzee,walrus,grouse,guppy                   |
-|10| borneo elephant,french bulldog,manta ray,chinese crested dog,elephant shrew,marsh frog,dogue de bordeaux,sparrow,monkey,giraffe  |
-
+| N   | Animals                                                                                                   |
+|-----|-----------------------------------------------------------------------------------------------------------|
+| 1 | blue whale                                                                                                |
+| 2 | beaver,skunk                                                                                              |
+| 3 | weasel,woodpecker,shrew                                                                                   |
+| 4 | sparrow,prairie dog,lab rat,pike                                                                          |
+| 5 | sparrow,crayfish,fancy rat varieties,piranha,nightingale                                                  |
+| 6 | sparrow,crayfish,walrus,quail,kangaroo rat,guppy                                                          |
+| 7 | sparrow,crayfish,fancy rat,walrus,mongoose,pinniped,guppy                                                 |
+| 8 | rat,walrus,mammal,society finch,sparrow,trout,quokka,mongoose                                             |
+| 9 | swordfish,locust,dog,rodent,society finch,sparrow,sperm whale,sea slug,quokka                             |
+| 10 | swordfish,locust,rodent,mammal,society finch,blue whale,portuguese man o' war,sparrow,giant squid,quokka  |
 ## Dependencies
 You will need the following libraries:
 * (to run the setup)

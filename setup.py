@@ -11,9 +11,9 @@ CACHED_DATA_FOLDER = "prepared_data"
 LIST_OF_ANIMALS_FILE = os.path.join(CACHED_DATA_FOLDER, "list_of_animals.json")
 ANIMAL_SIMILARITIES_FILE = os.path.join(CACHED_DATA_FOLDER, "animal_similarities.npy")
 
-#URL_ANIMALS = r"https://gist.github.com/raineorshine/599777e98e5e968a15c545043973f035/raw"
+URL_ANIMALS = r"https://gist.github.com/raineorshine/599777e98e5e968a15c545043973f035/raw"
 # the URL below has more animals
-URL_ANIMALS = r"https://raw.githubusercontent.com/skjorrface/animals.txt/refs/heads/master/animals.txt"
+#URL_ANIMALS = r"https://raw.githubusercontent.com/skjorrface/animals.txt/refs/heads/master/animals.txt"
 
 def download_list_of_animals():
     downloaded_list_of_animals = utils.download_raw_text_from_website(URL_ANIMALS)
